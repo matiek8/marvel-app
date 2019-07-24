@@ -13,33 +13,29 @@
 </template>
 
 <script>
-  import {public_key} from '../marvel'
-  import axios from 'axios'
+  import {mapState} from 'vuex'
 
   export default {
     name: "Character",
     data() {
       return {
-        character: [],
-        url: '',
+        url: String,
         size: 'standard_large.jpg',
       }
     },
     mounted() {
-      this.getCharacter()
+      this.$store.dispatch('getCharacter', this.$route.params.id)
+      this.getImage()
+    },
+    computed: {
+      ...mapState({
+        character: state => state.character,
+        preUrl: state => state.url
+      })
     },
     methods: {
-      getCharacter: async function () {
-        let character_id = this.$route.params.id;
-        try {
-          const response = await axios.get(`http://gateway.marvel.com/v1/public/characters/${character_id}?apikey=${public_key}`);
-          response.data.data.results.forEach((item) => {
-            this.character.push(item);
-            this.url = `${item.thumbnail.path}/${this.size}`;
-          });
-        } catch (e) {
-          console.error(e)
-        }
+      getImage() {
+        this.url= `${this.preUrl}${this.size}`
       }
     }
   }
