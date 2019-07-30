@@ -15,7 +15,7 @@ export default new Vuex.Store({
     async getCharacters(state) {
       try {
         state.characters = []
-        const response = await axios.get(`http://gateway.marvel.com/v1/public/characters?limit=100&apikey=${public_key}`);
+        const response = await axios.get(`http://gateway.marvel.com/v1/public/characters?limit=20&apikey=${public_key}`);
         response.data.data.results.forEach((item) => {
           state.characters.push(item)
         });
