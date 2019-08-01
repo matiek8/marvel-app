@@ -60,7 +60,6 @@
           this.questions.push(item)
         });
         console.log(this.questions)
-        // console.log(response)
       } catch (e) {
         console.error(e)
       }

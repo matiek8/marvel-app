@@ -1,15 +1,25 @@
 <template>
-    <div>
-        <div class="card-container">
-            <div class="card"
-                 v-for="character in characters">
-                <h3>{{character.name}}</h3>
-                <router-link :to="{ name: 'character', params: {id: character.id} }">
-                    <button type="button" name="button" class="btn-view">View</button>
-                </router-link>
-            </div>
-        </div>
-    </div>
+    <b-container class="mt-5">
+        <b-row>
+            <b-col cols="4"
+                   v-for="character in characters"
+                   class="mt-5">
+                <b-link :to="{ name: 'character', params: {id: character.id} }">
+                    <b-img
+                            :src="character.thumbnail.path+'/standard_fantastic.jpg'"
+                            img-alt="Image"
+                            img-top
+                            tag="article"
+                            style="max-width: 20rem;"
+                            class="mb-2">
+                    </b-img>
+                    <p class="sh_name">
+                        <mark>{{character.name}}</mark>
+                    </p>
+                </b-link>
+            </b-col>
+        </b-row>
+    </b-container>
 </template>
 
 <script>
@@ -17,43 +27,37 @@
 
   export default {
     name: "Characters",
+    data() {
+      return {
+        url: String,
+        size: 'standard_large.jpg',
+      }
+    },
     mounted() {
       this.$store.dispatch('getCharacters')
     },
     computed: {
       ...mapState({
-        characters: state => state.characters
+        characters: state => state.characters,
       })
     },
-    methods: {}
+    methods: {
+    }
   }
 </script>
 
 <style scoped>
-    .card-container {
-        margin: auto;
-        display: grid;
-        grid-template-columns: 200px 200px 200px;
-        grid-gap: 10px;
-    }
-    .card{
-        text-align: center;
-        background-color: #333333;
-        min-height: 200px;
-    }
-    .card h3 {
-        color: white;
+    .sh_name {
+        margin-top: -50px;
     }
 
-    .btn-view {
-        padding: 10px;
-        margin-top: 50px;
-        border-radius: 15px;
-        width: 120px;
-        background-color: transparent;
+    mark {
         color: white;
-        font-size: 12px;
-        font-weight: bold;
-        cursor: pointer;
+        background: black;
+    }
+
+    img:hover{
+        background: linear-gradient(25deg, rgba(216, 38, 67, 0.51), rgba(224, 115, 125, 0.51), rgba(219, 173, 188, 0.5), rgba(196, 228, 255, 0.54))
+        /*background: radial-gradient();*/
     }
 </style>
