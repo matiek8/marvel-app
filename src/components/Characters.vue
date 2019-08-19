@@ -9,7 +9,7 @@
                 <font-awesome-icon icon="random"/>
             </b-button>
         </div>
-        <b-row>
+        <b-row id="sh_characters_block">
             <b-col cols="4"
                    v-for="character in characters"
                    class="mt-5">
@@ -46,7 +46,8 @@
       }
     },
     mounted() {
-      this.$store.dispatch('getCharacters')
+      this.$store.dispatch('getCharacters');
+      this.show_characters()
     },
     computed: {
       ...mapState({
@@ -55,8 +56,12 @@
     },
     methods: {
       update_sh() {
-         this.$store.dispatch('getCharacters')
-        console.log('sh')
+         this.$store.dispatch('getCharacters');
+      },
+      show_characters() {
+        setTimeout(
+          document.getElementById("sh_characters_block").style.display = 'flex'
+          , 10000)
       }
     }
   }
@@ -74,7 +79,10 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         font-weight: 500;
-        /*color: #8b1c2e;*/
+    }
+
+    #sh_characters_block {
+        display: none;
     }
 
     mark {

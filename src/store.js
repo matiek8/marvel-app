@@ -9,7 +9,6 @@ export default new Vuex.Store({
   state: {
     characters: [],
     character:[],
-    url: String
   },
   mutations: {
     async getCharacters(state) {
@@ -19,7 +18,6 @@ export default new Vuex.Store({
         const max_index = 1481;
         let offset = Math.random()*(max_index-min_index)+min_index;
         const response = await axios.get(`http://gateway.marvel.com/v1/public/characters?limit=12&offset=${offset}&apikey=${public_key}`);
-        // const response = await axios.get(`http://gateway.marvel.com/v1/public/characters?limit=12&offset=1180&apikey=${public_key}`);
         response.data.data.results.forEach((item) => {
           state.characters.push(item)
         });
@@ -32,11 +30,9 @@ export default new Vuex.Store({
       try {
         state.character = [];
         const response = await axios.get(`http://gateway.marvel.com/v1/public/characters/${id}?apikey=${public_key}`);
-        // console.log(response);
+        console.log(response);
         response.data.data.results.forEach((item) => {
          state.character.push(item);
-          state.url = `${item.thumbnail.path}/`;
-          console.log(state.url)
         });
       } catch (e) {
         console.error(e)

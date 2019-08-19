@@ -1,15 +1,35 @@
 <template>
     <div id="sh_character">
-        <b-container>
-            <p>{{this.$route.params.id}}</p>
-            <ul>
-                <li v-for="char in character">
-                    {{char.name}}
-                    {{char.description}}
-                </li>
-            </ul>
-            <img :src="img_url"
-                 alt="">
+        <b-container v-for="char in character">
+            <b-row>
+                <b-col cols="8"
+                       id="sh_character_col_basic_info">
+                    <h1 class="display-2"
+                        id="sh_character_name">{{char.name}}</h1>
+                    <p id="sh_character_description">{{char.description}}</p>
+
+                </b-col>
+                <b-col cols="4"
+                       id="sh_character_col_img">
+                    <b-img
+                            id="sh_character_img"
+                            center
+                            :src="char.thumbnail.path+'/portrait_uncanny.jpg'"
+                            img-alt="Image"
+                            img-top
+                            tag="article"
+                            class="mb-2">
+                    </b-img>
+                </b-col>
+            </b-row>
+            <b-container id="sh_character_series" style="">
+                <h1>Series</h1>
+                <ul v-for="series in char.series.items">
+                    <li>
+                        {{series.name}}
+                    </li>
+                </ul>
+            </b-container>
         </b-container>
     </div>
 </template>
@@ -27,28 +47,75 @@
     },
     async mounted() {
       this.$store.dispatch('getCharacter', this.$route.params.id)
-      await this.getImage()
     },
     computed: {
       ...mapState({
         character: state => state.character,
-        preUrl: state => state.url
       }),
-      print_url() {
-        console.log()
-      }
     },
-    methods: {
-      getImage() {
-        console.log(this.preUrl)
-        this.img_url = `${this.preUrl}${this.size}`
-      }
-    }
+    methods: {}
   }
 </script>
 
 <style scoped>
     #sh_character {
+        margin-top: 50px;
         min-height: 100vh;
+
+    }
+
+    #sh_character_col_img {
+        margin-top: 50px;
+        margin-left: -50px;
+        margin-bottom: 50px;
+    }
+
+    #sh_character_col_img:hover {
+        margin-left: -30px;
+    }
+
+    #sh_character_img {
+        max-width: 20rem;
+        box-shadow: -4px 4px 20px 1px #292929;
+    }
+
+    #sh_character_col_basic_info {
+        background: white;
+        margin-right: -50px;
+        margin-left: 50px;
+        box-shadow: -4px 4px 20px 1px #292929;
+    }
+
+    #sh_character_col_basic_info:hover {
+        margin-right: -40px;
+        margin-left: 40px;
+        margin-bottom: 10px;
+        margin-top: -10px;
+    }
+
+    #sh_character_name {
+        padding-top: 150px;
+        padding-left: 40px;
+        padding-right: 60px;
+    }
+
+    #sh_character_description {
+        padding-left: 50px;
+        font-size: 18px;
+        padding-right: 60px;
+    }
+
+    #sh_character_series {
+        background: #dc3545;
+        margin-top: -80px;
+        margin-bottom: -80px;
+        padding: 50px;
+        padding-top: 100px;
+        color: white;
+    }
+
+    #sh_character_series:hover {
+        margin-top: -50px;
+        margin-bottom: -50px;
     }
 </style>
