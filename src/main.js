@@ -4,7 +4,7 @@ import store from './store'
 import BootstrapVue from 'bootstrap-vue'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faRandom } from '@fortawesome/free-solid-svg-icons'
+import { faRandom, faRedo } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 import 'bootstrap/dist/css/bootstrap.css'
@@ -13,6 +13,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import App from './App.vue'
 
 library.add(faRandom);
+library.add(faRedo);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.use(BootstrapVue);

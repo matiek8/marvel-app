@@ -31,6 +31,7 @@
                 </b-link>
             </b-col>
         </b-row>
+        <b-row id="sh_load"></b-row>
     </b-container>
 </template>
 
@@ -47,7 +48,7 @@
     },
     mounted() {
       this.$store.dispatch('getCharacters');
-      this.show_characters()
+      // this.show_characters()
     },
     computed: {
       ...mapState({
@@ -82,7 +83,13 @@
     }
 
     #sh_characters_block {
-        display: none;
+        height: 1191.94px;
+    }
+
+    #sh_load {
+        height: 1191.94px;
+        margin-top: -1191.94px;
+        background: #dc3545;
     }
 
     mark {

@@ -8,7 +8,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     characters: [],
-    character:[],
+    character: [],
+    questions: [],
   },
   mutations: {
     async getCharacters(state) {
@@ -16,7 +17,7 @@ export default new Vuex.Store({
         state.characters = [];
         const min_index = 1;
         const max_index = 1481;
-        let offset = Math.random()*(max_index-min_index)+min_index;
+        let offset = Math.random() * (max_index - min_index) + min_index;
         const response = await axios.get(`http://gateway.marvel.com/v1/public/characters?limit=12&offset=${offset}&apikey=${public_key}`);
         response.data.data.results.forEach((item) => {
           state.characters.push(item)
@@ -32,7 +33,18 @@ export default new Vuex.Store({
         const response = await axios.get(`http://gateway.marvel.com/v1/public/characters/${id}?apikey=${public_key}`);
         console.log(response);
         response.data.data.results.forEach((item) => {
-         state.character.push(item);
+          state.character.push(item);
+        });
+      } catch (e) {
+        console.error(e)
+      }
+    },
+    async getQuestions(state) {
+      try {
+        state.questions = [];
+        const response = await axios.get(`https://opentdb.com/api.php?amount=10&category=29&type=multiple`);
+        response.data.results.forEach((item) => {
+          state.questions.push(item)
         });
       } catch (e) {
         console.error(e)
@@ -45,6 +57,9 @@ export default new Vuex.Store({
     },
     getCharacter(context, id) {
       context.commit('getCharacter', id)
+    },
+    getQuestions(context) {
+      context.commit('getQuestions')
     }
   }
 })

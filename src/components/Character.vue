@@ -70,10 +70,6 @@
         margin-bottom: 50px;
     }
 
-    #sh_character_col_img:hover {
-        margin-left: -30px;
-    }
-
     #sh_character_img {
         max-width: 20rem;
         box-shadow: -4px 4px 20px 1px #292929;
@@ -84,13 +80,6 @@
         margin-right: -50px;
         margin-left: 50px;
         box-shadow: -4px 4px 20px 1px #292929;
-    }
-
-    #sh_character_col_basic_info:hover {
-        margin-right: -40px;
-        margin-left: 40px;
-        margin-bottom: 10px;
-        margin-top: -10px;
     }
 
     #sh_character_name {
@@ -112,10 +101,5 @@
         padding: 50px;
         padding-top: 100px;
         color: white;
-    }
-
-    #sh_character_series:hover {
-        margin-top: -50px;
-        margin-bottom: -50px;
     }
 </style>
