@@ -31,7 +31,7 @@
                 </b-link>
             </b-col>
         </b-row>
-        <b-row id="sh_load"></b-row>
+<!--        <b-row id="sh_load"></b-row>-->
     </b-container>
 </template>
 
