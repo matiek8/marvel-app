@@ -1,0 +1,13 @@
+version: '3'
+services:
+    front:
+      image: marvel-app/front
+      build:
+        context: ./
+        dockerfile: front.dockerfile
+      command: npm run serve
+      volumes:
+        - ./client:/app
+      ports:
+        - "8080:8080"
+

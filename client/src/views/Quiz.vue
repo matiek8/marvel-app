@@ -3,7 +3,7 @@
         <b-row class="ml-0 mr-0 mt-5">
             <b-col sm="4">
                 <div class="row">
-                    <b-col>
+                    <b-col v-if="numTotal<10">
                         <h1 class="display-1 text-danger text-center">{{numCorrect}}</h1>
                         <p class="text-danger text-center" style="margin-top: -25px">score</p>
                     </b-col>
@@ -21,7 +21,7 @@
                             :increment="increment"/>
                 </div>
                 <div v-else>
-                    <b-container v-for="char in character">
+                    <b-container v-for="char in character" class="text-center">
                         <b-img id="sh_character_img"
                                center
                                :src="char.thumbnail.path+'/portrait_uncanny.jpg'"
@@ -29,12 +29,14 @@
                                img-top
                                tag="article"
                                class="mb-2"></b-img>
-                        <h1>Good job, {{char.name}}</h1>
-                        <h1>Your result: {{numCorrect}}/{{numTotal}}</h1>
-                        <b-button variant="outline-danger"
-                                  @click="update_sh">Try again
-                            <font-awesome-icon icon="redo"/>
-                        </b-button>
+                        <div class="container" style="width: 300px; margin-top: -180px; color: white">
+                            <h3>Good job, {{char.name}}</h3>
+                            <h4>Your result: {{numCorrect}}/{{numTotal}}</h4>
+                            <b-button variant="danger"
+                                      @click="update_sh">Try again
+                                <font-awesome-icon icon="redo"/>
+                            </b-button>
+                        </div>
                     </b-container>
                 </div>
             </b-col>

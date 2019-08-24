@@ -2,7 +2,7 @@
     <b-container id="sh_characters" class="mt-5">
         <div class="mb-5">
             <h1 id="sh_title"
-                 class="display-1">SuperHero
+                class="display-1">SuperHero
             </h1>
             <b-button variant="outline-danger"
                       @click="update_sh">Shuffle
@@ -31,41 +31,40 @@
                 </b-link>
             </b-col>
         </b-row>
-<!--        <b-row id="sh_load"></b-row>-->
+        <!--        <b-row id="sh_load"></b-row>-->
     </b-container>
 </template>
 
 <script>
-  import {mapState} from 'vuex'
+    import {mapState} from 'vuex'
 
-  export default {
-    name: "Characters",
-    data() {
-      return {
-        url: String,
-        size: 'standard_large.jpg',
-      }
-    },
-    mounted() {
-      this.$store.dispatch('getCharacters');
-      // this.show_characters()
-    },
-    computed: {
-      ...mapState({
-        characters: state => state.characters,
-      })
-    },
-    methods: {
-      update_sh() {
-         this.$store.dispatch('getCharacters');
-      },
-      show_characters() {
-        setTimeout(
-          document.getElementById("sh_characters_block").style.display = 'flex'
-          , 10000)
-      }
+    export default {
+        name: "Characters",
+        data() {
+            return {
+                url: String,
+                size: 'standard_large.jpg',
+            }
+        },
+        mounted() {
+            this.$store.dispatch('getCharacters');
+        },
+        computed: {
+            ...mapState({
+                characters: state => state.characters,
+            })
+        },
+        methods: {
+            update_sh() {
+                this.$store.dispatch('getCharacters');
+            },
+            // show_characters() {
+            //     setTimeout(
+            //         document.getElementById("sh_characters_block").style.display = 'flex'
+            //         , 13000)
+            // }
+        }
     }
-  }
 </script>
 
 <style scoped>
