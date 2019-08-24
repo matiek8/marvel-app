@@ -5,9 +5,9 @@ services:
       build:
         context: ./
         dockerfile: front.dockerfile
-      command: npm run serve
+      command: npm run serve -- --port 4040
       volumes:
         - ./client:/app
       ports:
-        - "8080:8080"
+        - "4040:4040"
 
